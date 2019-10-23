@@ -21,7 +21,8 @@
     },
     "files": [
         "srv",
-        "db"
+        "db",
+        "index.cds"
     ],
     "cds": {
         "odata": {

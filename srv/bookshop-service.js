@@ -5,10 +5,10 @@ module.exports = (srv)=>{
 
     // Use reflection to get the csn definition of Books
     // const { Books } = cds.entities
-    const Books = cds.entities('com.playground.bookshop.CatalogService.Books')
+    const Books = cds.entities('com.playground.bookshop')
     // Intercept generic handler to read books programmatically
     // (actually not required, just as a showcase)
-    //srv.on ('READ','com.playground.bookshop.CatalogService.Books', SELECT.from(Books))
+    //srv.on ('READ','Books', SELECT.from(Books))
   
     // Add some discount for overstocked books
     srv.after ('READ','Books', (each)=>{
