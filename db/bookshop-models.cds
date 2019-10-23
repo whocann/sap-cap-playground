@@ -2,7 +2,7 @@ namespace com.playground.bookshop;
 
 using { Country, managed } from '@sap/cds/common';
 
-entity Books {
+entity Books: managed {
   key ID : Integer @title: '{i18n>book}';
   title  : localized String;
   author : Association to Authors @(
