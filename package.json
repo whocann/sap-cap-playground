@@ -16,7 +16,8 @@
     "scripts": {
         "build": "cds build/all --clean",
         "deploy": "cds deploy",
-        "start": "cds run"
+        "start": "cds deploy && cds watch .",
+        "watch": "nodemon -w . -i node_modules/**,.git/** -e cds -x npm run build"
     },
     "files": [
         "srv",
@@ -45,6 +46,7 @@
     "devDependencies": {
         "@sap/cds-dk": "^1.1.1",
         "@sap/hdi-deploy": "^3.11.4",
-        "sqlite3": "^4.1.0"
+        "sqlite3": "^4.1.0",
+        "@sap/edmx2csn": "^1.0.8"
     }
 }

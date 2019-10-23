@@ -8,6 +8,16 @@
 
     cds run --in-memory
 
+    set CDS_ENV=production 
+    
+    cds run
+
+# HANA
+
+    cds deploy --to hana
+
+    cds deploy --to hana --tunnel-address localhost:23803
+
 # SQLite
 
     sqlite3 sqlite.db .dump
