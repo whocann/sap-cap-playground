@@ -1,0 +1,66 @@
+using { sap.common.Countries } from '@sap/cds/common';
+
+extend Countries {
+  numcode : Integer; //> ISO 3166-1 three-digit numeric codes
+  alpha3 : String(3); //> ISO 3166-1 three-letter alpha codes
+  alpha4 : String(4); //> ISO 3166-3 four-letter alpha codes
+}
+
+annotate Countries with @(
+  title: 'Countries Code List'
+){
+  code @title:'ISO Country Code'
+}
+
+
+using CatalogService as srv from './cat-service';
+
+
+annotate srv.Beers with @(
+
+  UI.SelectionFields: [ name, brand, style ],
+
+  UI.LineItem: [
+    { Value: BeerID },
+    { Value: name   },
+    { Value: brand  },
+    { Value: style  },
+    { Value: stock  }
+  ],
+
+  UI.HeaderInfo: {
+    Title: { Value: name },
+    Description: { Value: BeerID },
+  },
+
+  UI.Facets: [
+    {
+      $Type:'UI.CollectionFacet',
+      Facets:[
+        { $Type: 'UI.ReferenceFacet', Label: 'Data',  Target: '@UI.FieldGroup#Data' },
+        { $Type: 'UI.ReferenceFacet', Label: 'Admin',  Target: '@UI.FieldGroup#Admin' }
+      ]
+    }
+  ],
+
+  UI.FieldGroup#Data: {
+    Label: 'Data',
+    Data: [
+      {Value: BeerID },
+      {Value: name   },
+      {Value: brand  },
+      {Value: style  },
+      {Value: stock  }
+    ]
+  },
+
+	UI.FieldGroup#Admin: {
+    Label: 'Admin',
+    Data: [
+      {Value: createdBy},
+      {Value: createdAt},
+      {Value: modifiedBy},
+      {Value: modifiedAt}
+    ]
+  }  
+);
